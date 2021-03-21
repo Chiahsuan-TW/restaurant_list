@@ -99,6 +99,15 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
   })
 
+  // setting router for delete function
+  app.post('/restaurants/:id/delete', (req, res) => {
+    const id = req.params.id
+    return Restaurant.findById(id)
+      .then(restaurant => restaurant.remove())
+      .then(() => res.redirect('/'))
+      .catch(error => console.log(error))
+  })
+
 
 
 //start and listen the server

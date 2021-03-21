@@ -57,6 +57,22 @@ header {
     background-color: white;
     color:crimson;
   }
+
+  .delete-button button {
+    border: none;
+    background-color: white;
+    color:coral;
+  }
+
+  .delete-button button:hover {
+    border: none;
+    background-color: white;
+    color:crimson;
+  }
+
+   a:link {
+    text-decoration: none;
+  }
   
   .form-control:focus {
     box-shadow: none;

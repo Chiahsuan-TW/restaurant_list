@@ -11,9 +11,9 @@
                     width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
                 我的餐廳清單
             </a>
-            
-            <a href="/restaurant/new">Add Restaurant</a>
-            
+            <a class="add-restaurant" href="/restaurant/new">
+            <i class="fas fa-plus-circle">Add Restaurant</i>
+            </a>
         </div>
     </nav>
 
@@ -69,8 +69,10 @@
                             <div>
                                 <a href="/restaurants/{{this._id}}/edit"><i class="far fa-edit"></i></a>
                             </div>
-                            <div>
-                                <a href="#"><i class="fas fa-trash-alt"></i></a>
+                            <div class="delete-button">
+                                <form action="/restaurants/{{ this._id }}/delete" method="POST" style="display: inline;">
+                                <button type="submit"><i class="fas fa-trash-alt"></i></button>
+                                </form>
                             </div>
                         </div>
                     </div>
