@@ -37,8 +37,11 @@ app.get('/',(req,res)=>{
 
 //routing when click the restaurant for more Info
 app.get('/restaurants/:id',(req,res)=>{
-    const restaurantInfo = restaurantList.results.find(restaurant=> restaurant.id.toString() === req.params.id)
-    res.render('show', {restaurant: restaurantInfo})
+    const id = req.params.id
+    return Restaurant.findById(id)
+    .lean()
+    .then((restaurant) => res.render('show', { restaurant }))
+    .catch(error => console.log(error))
 })
 
 //routing for search results
@@ -60,7 +63,7 @@ app.post('/restaurant/new', (req, res) => {
     const category = req.body.category
     const location = req.body.location
     const phone = req.body.phone
-    const map = req.body.map
+    const map = req.body.google_map
     const rating = req.body.rating
     const description = req.body.description
     const image = req.body.image     

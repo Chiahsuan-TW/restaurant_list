@@ -45,7 +45,7 @@
         <div class="col-md-10 col-12 mx-auto">
             <div class="card-columns">
                 {{#each restaurants}}
-                <a href="/restaurants/{{this.id}}" class="text-secondary">
+                <a href="/restaurants/{{this._id}}" class="text-secondary">
                     <div class="card mb-3">
                         <img class="card-img-top"
                             src="{{this.image}}"
@@ -63,9 +63,15 @@
                             </span>
                         </div>
                         <div class="crud-button d-flex justify-content-end">
-                            <button class="btn btn-major" type="submit" id="detail-button"><i class="fas fa-info-circle"></i></button>
-                            <button class="btn btn-major" type="submit" id="edit-button"><i class="far fa-edit"></i></button>
-                            <button class="btn btn-major" type="submit" id="delete-button"><i class="fas fa-trash-alt"></i></button>
+                            <div>
+                                <a href="/restaurants/{{this._id}}"><i class="fas fa-info-circle"></i></a>
+                            </div>
+                            <div>
+                                <a href="#"><i class="far fa-edit"></i></a>
+                            </div>
+                            <div>
+                                <a href="#"><i class="fas fa-trash-alt"></i></a>
+                            </div>
                         </div>
                     </div>
                 </a>

@@ -45,12 +45,15 @@ header {
     color: white;
   }
 
-  .crud-button .btn-major  {
+  .crud-button div {
+    margin: 4px;
+  }
+  .crud-button a {
     background-color: white;
     color:coral;
   }
 
-  .crud-button .btn-major:hover  {
+  .crud-button a:hover {
     background-color: white;
     color:crimson;
   }
