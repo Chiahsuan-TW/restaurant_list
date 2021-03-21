@@ -1,0 +1,61 @@
+<header>
+  <!-- navigation -->
+  <nav class="navbar navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+          <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png" width="30" height="30" class="d-inline-block align-top" alt="好。吃">
+          我的餐廳清單
+        </a>
+    </div>
+  </nav>
+  <div class="banner"></div>
+</header>
+
+<div class="container w-50 mt-4 rounded" style="background-color: coral; opacity: 0.9">
+    <form action="/restaurant/new" method="POST">
+  <div class="form-group pt-1">
+    <label for="name">餐廳名稱</label>
+    <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
+  </div>
+  <div class="form-group">
+    <label for="category">類別</label>
+    <select class="form-control" id="category" name="category">
+      <option>台菜餐廳</option>
+      <option>港式飲茶</option>
+      <option>美式餐廳</option>
+      <option>義式餐廳</option>
+      <option>日本料理</option>
+      <option>韓式料理</option>
+      <option>東南亞料理</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="location">地址</label>
+    <input type="text" class="form-control" id="location" name="location"placeholder="請輸入地址">
+  </div>
+  <div class="form-group">
+    <label for="phone">電話</label>
+    <input type="text" class="form-control" id="phone" name="phone" placeholder="請輸入電話">
+  </div>
+  <div class="form-group">
+    <label for="map">Google Map</label>
+    <input type="url" class="form-control" id="map" name="map" placeholder="http://...">
+  </div>
+  <div class="form-group">
+    <label for="rating">評分</label>
+    <select class="form-control" id="rating" name="rating">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="description">敘述</label>
+    <textarea class="form-control" id="description" rows="3" name="description"></textarea>
+  </div>
+  
+  <button type="submit" class="btn btn-info">新增餐廳</button>
+</form>
+</div>

@@ -6,7 +6,8 @@ const exphbs = require('express-handlebars')
 const restaurantList = require('./restaurant.json')
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/restaurant_list', {useNewUrlParser: true, useUnifiedTopology: true})
-
+const Restaurant = require('./models/restaurant')
+const bodyParser = require('body-parser')
 
 const db = mongoose.connection
 
@@ -24,10 +25,14 @@ app.set('view engine', 'handlebars')
 
 //use static files
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({extended: true }))
 
 //handle request and response
 app.get('/',(req,res)=>{
-    res.render('index', {restaurant: restaurantList.results})
+    Restaurant.find() 
+    .lean() 
+    .then(restaurants => res.render('index', { restaurants })) 
+    .catch(error => console.error(error))
 })
 
 //routing when click the restaurant for more Info
@@ -45,6 +50,17 @@ app.get('/search',(req,res)=>{
     })
     res.render('index', {restaurant: searchResult, keyword: keyword})
 })
+
+app.get('/restaurant/new',(req,res)=>{
+  res.render('new')
+})
+
+app.post('/restaurant/new', (req, res) => {
+    const name = req.body.name       
+    return Restaurant.create({ name })     
+      .then(() => res.redirect('/')) 
+      .catch(error => console.log(error))
+  })
 
 
 //start and listen the server

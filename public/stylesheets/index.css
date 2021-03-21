@@ -44,6 +44,16 @@ header {
     background-color: #9b4b4b;
     color: white;
   }
+
+  .crud-button .btn-major  {
+    background-color: white;
+    color:coral;
+  }
+
+  .crud-button .btn-major:hover  {
+    background-color: white;
+    color:crimson;
+  }
   
   .form-control:focus {
     box-shadow: none;

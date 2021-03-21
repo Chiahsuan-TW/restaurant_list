@@ -5,12 +5,15 @@
 <header>
     <!-- navigation -->
     <nav class="navbar navbar-light bg-light">
-        <div class="container">
+        <div class="container d-flex justify-content-between">
             <a class="navbar-brand" href="/">
                 <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
                     width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
                 我的餐廳清單
             </a>
+            <form action="/restaurant/new" method="GET" class="add-restaurant">
+            <button type="submit">Add Restaurant</button>
+            </form>
         </div>
     </nav>
 
@@ -41,7 +44,7 @@
     <div class="row">
         <div class="col-md-10 col-12 mx-auto">
             <div class="card-columns">
-                {{#each restaurant}}
+                {{#each restaurants}}
                 <a href="/restaurants/{{this.id}}" class="text-secondary">
                     <div class="card mb-3">
                         <img class="card-img-top"
@@ -58,9 +61,16 @@
                                 {{this.rating}}
                                 <i class="fas fa-star fa-xs"></i>
                             </span>
-
+                        </div>
+                        <div class="crud-button d-flex justify-content-end">
+                            <button class="btn btn-major" type="submit" id="detail-button"><i class="fas fa-info-circle"></i></button>
+                            <button class="btn btn-major" type="submit" id="edit-button"><i class="far fa-edit"></i></button>
+                            <button class="btn btn-major" type="submit" id="delete-button"><i class="fas fa-trash-alt"></i></button>
                         </div>
                     </div>
                 </a>
                 {{/each}}
-                
+            </div>
+        </div>>
+    </div>
+</div>
