@@ -48,10 +48,12 @@ app.get('/restaurants/:id',(req,res)=>{
 app.get('/search',(req,res)=>{
     console.log(req.query.keyword)
     const keyword = req.query.keyword
-    const searchResult = restaurantList.results.filter(restaurant=>{
-        return restaurant.name.toLowerCase().includes(keyword.toLocaleLowerCase())
-    })
-    res.render('index', {restaurant: searchResult, keyword: keyword})
+    return Restaurant.find({"$or": [
+      { "name": { $regex: `${keyword}`, $options: '$i' } },
+      { "category": { $regex: `${keyword}`, $options: '$i' } }
+    ] })
+    .lean()
+    .then( restaurant => res.render('index', {restaurants: restaurant}))
 })
 
 app.get('/restaurant/new',(req,res)=>{
