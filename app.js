@@ -49,29 +49,23 @@ app.get('/search',(req,res)=>{
     console.log(req.query.keyword)
     const keyword = req.query.keyword
     return Restaurant.find({"$or": [
-      { "name": { $regex: `${keyword}`, $options: '$i' } },
-      { "category": { $regex: `${keyword}`, $options: '$i' } }
+      { "name": { $regex: `${keyword}`, $options: 'i' } },
+      { "category": { $regex: `${keyword}`, $options: 'i' } }
     ] })
     .lean()
     .then( restaurant => res.render('index', {restaurants: restaurant}))
 })
 
 app.get('/restaurant/new',(req,res)=>{
-  res.render('new')
+   res.render('new')
 })
 
 app.post('/restaurant/new', (req, res) => {
-    const name = req.body.name
-    const category = req.body.category
-    const location = req.body.location
-    const phone = req.body.phone
-    const map = req.body.google_map
-    const rating = req.body.rating
-    const description = req.body.description
-    const image = req.body.image     
+    const {name, category, location, phone, map, rating, description, image} = req.body
     return Restaurant.create({ name, category, location, phone, map, rating, description, image})     
       .then(() => res.redirect('/')) 
       .catch(error => console.log(error))
+
   })
 
 
@@ -86,15 +80,10 @@ app.get('/restaurants/:id/edit', (req, res) => {
 
   app.post('/restaurants/:id/edit', (req, res) => {
     const id = req.params.id
+    const source = req.body
     return Restaurant.findById(id)
     .then(restaurant => {
-      restaurant.name =  req.body.name
-      restaurant.category =  req.body.category
-      restaurant.location =  req.body.location
-      restaurant.phone =  req.body.phone
-      restaurant.google_map =  req.body.google_map
-      restaurant.rating =  req.body.rating
-      restaurant.description =  req.body.description
+      Object.assign(restaurant, source)
       return restaurant.save()
     })
     .then(()=> res.redirect(`/restaurants/${id}`))
