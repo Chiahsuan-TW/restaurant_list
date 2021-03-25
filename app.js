@@ -45,7 +45,7 @@ app.get('/restaurants/:id',(req,res)=>{
 })
 
 //routing for search results
-app.get('/search',(req,res)=>{
+app.get('restaurants/search',(req,res)=>{
     console.log(req.query.keyword)
     const keyword = req.query.keyword
     return Restaurant.find({"$or": [
@@ -56,11 +56,11 @@ app.get('/search',(req,res)=>{
     .then( restaurant => res.render('index', {restaurants: restaurant}))
 })
 
-app.get('/restaurant/new',(req,res)=>{
+app.get('/restaurants/new',(req,res)=>{
    res.render('new')
 })
 
-app.post('/restaurant/new', (req, res) => {
+app.post('/restaurants/new', (req, res) => {
     const {name, category, location, phone, map, rating, description, image} = req.body
     return Restaurant.create({ name, category, location, phone, map, rating, description, image})     
       .then(() => res.redirect('/')) 
