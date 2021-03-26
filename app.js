@@ -8,6 +8,7 @@ const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/restaurant_list', {useNewUrlParser: true, useUnifiedTopology: true})
 const Restaurant = require('./models/restaurant')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 
 const db = mongoose.connection
 
@@ -26,6 +27,7 @@ app.set('view engine', 'handlebars')
 //use static files
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended: true }))
+app.use(methodOverride('_method'))
 
 //handle request and response
 app.get('/',(req,res)=>{
@@ -80,7 +82,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
       .catch(error => console.log(error))
   })
 
-  app.post('/restaurants/:id/edit', (req, res) => {
+  app.put('/restaurants/:id', (req, res) => {
     const id = req.params.id
     const source = req.body
     return Restaurant.findById(id)
@@ -93,7 +95,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
   })
 
   // setting router for delete function
-  app.post('/restaurants/:id/delete', (req, res) => {
+  app.delete('/restaurants/:id', (req, res) => {
     const id = req.params.id
     return Restaurant.findById(id)
       .then(restaurant => restaurant.remove())

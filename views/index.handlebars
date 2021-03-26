@@ -70,7 +70,7 @@
                                 <a href="/restaurants/{{this._id}}/edit"><i class="far fa-edit"></i></a>
                             </div>
                             <div class="delete-button">
-                                <form action="/restaurants/{{ this._id }}/delete" method="POST" style="display: inline;">
+                                <form action="/restaurants/{{ this._id }}/?_method=delete" method="POST" style="display: inline;">
                                 <button type="submit"><i class="fas fa-trash-alt"></i></button>
                                 </form>
                             </div>

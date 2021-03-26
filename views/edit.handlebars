@@ -12,7 +12,7 @@
 </header>
 
 <div class="container w-50 mt-4 rounded" style="background-color: coral; opacity: 0.9">
-    <form action="/restaurants/{{restaurant._id}}/edit" method="POST">
+    <form action="/restaurants/{{restaurant._id}}/?_method=put" method="POST">
   <div class="form-group pt-1">
     <label for="name">餐廳名稱</label>
     <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" value="{{restaurant.name}}">
@@ -62,6 +62,6 @@
     <textarea class="form-control" id="description" rows="3" name="description">{{restaurant.description}}</textarea>
   </div>
   
-  <button type="submit" class="btn btn-info">新增餐廳</button>
+  <button type="submit" class="btn btn-info">確認修改</button>
 </form>
 </div>
