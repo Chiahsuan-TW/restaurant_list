@@ -35,6 +35,33 @@ app.get('/',(req,res)=>{
     .catch(error => console.error(error))
 })
 
+//routing for search results
+app.get('/restaurants/search',(req,res)=>{
+  console.log(req.query.keyword)
+  const keyword = req.query.keyword
+  return Restaurant.find({"$or": [
+    { "name": { $regex: `${keyword}`, $options: 'i' } },
+    { "category": { $regex: `${keyword}`, $options: 'i' } }
+  ] })
+  .lean()
+  .then( restaurant => res.render('index', {restaurants: restaurant, keyword} ))
+})
+
+app.get('/restaurants/new',(req,res)=>{
+  res.render('new')
+})
+
+
+app.post('/restaurants/new', (req, res) => {
+  if (typeof req.body.name !=='string' || req.body.name.length < 3) {
+    return res.send('The restaurant name is invalid, which should be at least 3 characters')
+  } 
+  const {name, category, location, phone, map, rating, description, image} = req.body
+    return Restaurant.create({ name, category, location, phone, map, rating, description, image})     
+    .then(() => res.redirect('/')) 
+    .catch(error => console.log(error))
+})
+
 //routing when click the restaurant for more Info
 app.get('/restaurants/:id',(req,res)=>{
     const id = req.params.id
@@ -43,31 +70,6 @@ app.get('/restaurants/:id',(req,res)=>{
     .then((restaurant) => res.render('show', { restaurant }))
     .catch(error => console.log(error))
 })
-
-//routing for search results
-app.get('restaurants/search',(req,res)=>{
-    console.log(req.query.keyword)
-    const keyword = req.query.keyword
-    return Restaurant.find({"$or": [
-      { "name": { $regex: `${keyword}`, $options: 'i' } },
-      { "category": { $regex: `${keyword}`, $options: 'i' } }
-    ] })
-    .lean()
-    .then( restaurant => res.render('index', {restaurants: restaurant}))
-})
-
-app.get('/restaurants/new',(req,res)=>{
-   res.render('new')
-})
-
-app.post('/restaurants/new', (req, res) => {
-    const {name, category, location, phone, map, rating, description, image} = req.body
-    return Restaurant.create({ name, category, location, phone, map, rating, description, image})     
-      .then(() => res.redirect('/')) 
-      .catch(error => console.log(error))
-
-  })
-
 
  // setting routers for editing
 app.get('/restaurants/:id/edit', (req, res) => {
