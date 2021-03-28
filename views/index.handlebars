@@ -21,7 +21,7 @@
 </header>
 
 <!-- search bar -->
-<div class="container search-bar">
+<div class="container search-bar d-flex justify-content-between">
     <div class="search-bar-outer">
         <div class="search-bar-inner">
             <form action="/restaurants/search">
@@ -37,6 +37,19 @@
             </form>
         </div>
     </div>
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="sortButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Sort
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="/sort/rating/desc">評分-由高至低</a>
+    <a class="dropdown-item" href="/sort/rating/asc">評分-由低至高</a>
+    <a class="dropdown-item" href="/sort/name/asc">店名-A->Z</a>
+    <a class="dropdown-item" href="/sort/name/desc">店名-Z->A</a>
+  </div>
+</div>
+    
 </div>
 
 <!-- restaurant list -->
@@ -79,6 +92,6 @@
                 </a>
                 {{/each}}
             </div>
-        </div>>
+        </div>
     </div>
 </div>
