@@ -15,8 +15,8 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
     "alert": "^5.0.10",
-    "body-parser": "^1.19.0",
-    "express": "^4.17.1",
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
     "express-handlebars": "^5.2.1",
     "method-override": "^3.0.0",
     "mongoose": "^5.12.1",
